@@ -642,25 +642,20 @@ stopRTSP(PyObject *self, PyObject *args)
     PyErr_SetString(error, buffer); 
     return NULL;
   }
-  if (clientList[rtspClientHandle] == NULL) {
-    sprintf(buffer, "Invalid null handle %d", rtspClientHandle);
-    PyErr_SetString(error, buffer);
-    return NULL;
-  }
- 
-  if (clientList[rtspClientHandle] == (RTSPClient*) -1) {
-    sprintf(buffer, "Invalid handle %d", rtspClientHandle);
-    PyErr_SetString(error, buffer);
-    return NULL;
-  }
 
-  RTSPClient* client;
-  client = clientList[rtspClientHandle];
+  RTSPClient* client = clientList[rtspClientHandle];
   if (client == NULL) {
     sprintf(buffer, "Invalid null handle %d", rtspClientHandle);
     PyErr_SetString(error, buffer);
     return NULL;
   }
+ 
+  if (client == (RTSPClient*) -1) {
+    sprintf(buffer, "Invalid handle %d", rtspClientHandle);
+    PyErr_SetString(error, buffer);
+    return NULL;
+  }
+
   clientList[rtspClientHandle] = NULL;
   shutdownStream(client);
 

@@ -1,8 +1,8 @@
 from distutils.core import setup, Extension
 
-INSTALL_DIR = './live'
+INSTALL_DIR = '/usr/include'
 module = Extension('live555',
-                   include_dirs=['%s/%s/include' % (INSTALL_DIR, x) for x in ['liveMedia', 'BasicUsageEnvironment', 'UsageEnvironment', 'groupsock']],
+                   include_dirs=['%s/%s' % (INSTALL_DIR, x) for x in ['liveMedia', 'BasicUsageEnvironment', 'UsageEnvironment', 'groupsock']],
                    libraries=['liveMedia', 'groupsock', 'BasicUsageEnvironment', 'UsageEnvironment'],
                    #extra_compile_args = ['-fPIC'],
                    library_dirs=['%s/%s' % (INSTALL_DIR, x) for x in ['liveMedia', 'UsageEnvironment', 'BasicUsageEnvironment','groupsock']],
